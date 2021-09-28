@@ -1,0 +1,25 @@
+---
+
+# This playBook can be used to copy over the dotFiles from your local machine to a remote.
+# Update the USER variable accordingly.
+
+- name: Copy dotFiles from local machine to remote.
+  hosts: all
+  gather_facts: no
+  vars:
+    USER: "skolavennu"
+
+  tasks:
+    - name: Copy .bash_profile from local to remote
+      copy:
+        src: /home/{{ USER }}/.bash_profile
+        dest: .bash_profile
+        owner: "{{ USER }}"
+        mode: 0744
+
+    - name: Copy .bashrc from local to remote.
+      copy:
+        src: /home/{{ USER }}/.bashrc
+        dest: .bashrc
+        owner: "{{ USER }}"
+        mode: 0744
